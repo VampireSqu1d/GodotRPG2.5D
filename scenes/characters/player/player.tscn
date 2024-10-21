@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://c2o2giknlag0u"]
+[gd_scene load_steps=48 format=3 uid="uid://c2o2giknlag0u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player/Player.cs" id="1_4364q"]
 [ext_resource type="Texture2D" uid="uid://bpt31ed3c2yoj" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_wh5f7"]
@@ -41,6 +41,8 @@
 [ext_resource type="Texture2D" uid="uid://cm1mflv6h2scs" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="36_o0skv"]
 [ext_resource type="Texture2D" uid="uid://rs2c1tgx0a3y" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="37_oxcqo"]
 [ext_resource type="Script" path="res://scripts/characters/player/DashState.cs" id="40_fa0fs"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vqx7d"]
 
 [sub_resource type="Animation" id="Animation_hmrrm"]
 resource_name = "Dash"
@@ -117,12 +119,21 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayer", "SpriteNode", "StateMachineNode")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.726716, 0)
+collision_layer = 2
+collision_mask = 3
+floor_max_angle = 1.55334
 script = ExtResource("1_4364q")
 AnimPlayer = NodePath("AnimationPlayer")
 SpriteNode = NodePath("Sprite3D")
 StateMachineNode = NodePath("StateMachine")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.266749, 0)
+shape = SubResource("CapsuleShape3D_vqx7d")
+
 [node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.0025
 texture_filter = 0
 texture = ExtResource("1_wh5f7")
 
@@ -146,7 +157,7 @@ script = ExtResource("33_niofc")
 [node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashTimer")]
 script = ExtResource("40_fa0fs")
 dashTimer = NodePath("Timer")
-dash_speed = 8.46
+dash_speed = 11.974
 
 [node name="Timer" type="Timer" parent="StateMachine/DashState"]
 wait_time = 0.4
