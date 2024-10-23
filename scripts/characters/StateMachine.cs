@@ -26,6 +26,9 @@ public partial class StateMachine : Node
 
 		currenState.Notification(GameConstants.NOTIFICATION_EXIT_STATE);
 		currenState = newState;
+
+		GD.Print(currenState.Name);
+
 		currenState.Notification(GameConstants.NOTIFICATION_ENTER_STATE);
 	}
 }

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://djy8hg36bglci"]
+
+[ext_resource type="Script" path="res://scripts/characters/StateMachine.cs" id="1_femao"]
+
+[node name="StateMachine" type="Node" node_paths=PackedStringArray("states")]
+script = ExtResource("1_femao")
+states = []

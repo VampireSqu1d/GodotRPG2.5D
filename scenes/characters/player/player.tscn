@@ -36,13 +36,14 @@
 [ext_resource type="Script" path="res://scripts/characters/player/MoveState.cs" id="33_niofc"]
 [ext_resource type="Texture2D" uid="uid://bmcwrvl3ox0j4" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_001.png" id="33_tkdsa"]
 [ext_resource type="Texture2D" uid="uid://cqkrx3ucs8os0" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_002.png" id="34_bpyku"]
-[ext_resource type="Script" path="res://scripts/characters/StateMachine.cs" id="34_rwqlo"]
 [ext_resource type="Texture2D" uid="uid://x80unqfqpduh" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_003.png" id="35_s5uks"]
 [ext_resource type="Texture2D" uid="uid://cm1mflv6h2scs" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="36_o0skv"]
 [ext_resource type="Texture2D" uid="uid://rs2c1tgx0a3y" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="37_oxcqo"]
+[ext_resource type="PackedScene" uid="uid://djy8hg36bglci" path="res://scenes/characters/state_machine.tscn" id="38_2vthp"]
 [ext_resource type="Script" path="res://scripts/characters/player/DashState.cs" id="40_fa0fs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vqx7d"]
+height = 1.79653
 
 [sub_resource type="Animation" id="Animation_hmrrm"]
 resource_name = "Dash"
@@ -121,7 +122,7 @@ _data = {
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayer", "SpriteNode", "StateMachineNode")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.726716, 0)
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 floor_max_angle = 1.55334
 script = ExtResource("1_4364q")
 AnimPlayer = NodePath("AnimationPlayer")
@@ -129,7 +130,7 @@ SpriteNode = NodePath("Sprite3D")
 StateMachineNode = NodePath("StateMachine")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.266749, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.184553, 0)
 shape = SubResource("CapsuleShape3D_vqx7d")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
@@ -143,8 +144,7 @@ libraries = {
 }
 autoplay = "Idle"
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currenState", "states")]
-script = ExtResource("34_rwqlo")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("currenState", "states") instance=ExtResource("38_2vthp")]
 currenState = NodePath("IdleState")
 states = [NodePath("IdleState"), NodePath("MoveState"), NodePath("DashState")]
 
