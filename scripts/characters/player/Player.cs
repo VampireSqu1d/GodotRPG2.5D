@@ -5,7 +5,7 @@ public partial class Player : Character
 {
 
     public override void _Ready() {
-        
+        base._Ready();
     }
     
     public override void _Input(InputEvent @event) {
@@ -18,6 +18,8 @@ public partial class Player : Character
 
     }
 
-
+    public void CheckForAttackInput() {
+        
+    }
 	
 }
