@@ -4,8 +4,8 @@ using Godot;
 [GlobalClass]
 public partial class StatResource : Resource {
 
-    public Action OnZero;
-
+    public event Action OnZero;
+    public event Action OnUpdate;
     [Export] public Stat StatType {get; private set;}
 
     private float _statValue;
@@ -14,6 +14,8 @@ public partial class StatResource : Resource {
         set {
             _statValue = Mathf.Clamp(value, 0, Mathf.Inf);
             
+            OnUpdate?.Invoke();
+
             if (_statValue == 0) OnZero?.Invoke();
         }
         }

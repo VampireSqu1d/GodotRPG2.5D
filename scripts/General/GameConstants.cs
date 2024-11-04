@@ -16,6 +16,7 @@ public class GameConstants {
     public const string INPUT_MOVE_BACKWARD = "move_backward";
     public const string INPUT_DASH = "dash";
     public const string INPUT_ATTACK = "attack";
+    public const string INPUT_PAUSE = "pause";
     
     // Notification numbers
     public const int NOTIFICATION_ENTER_STATE = 5001;
