@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://kxmleus8gd5a"]
+[gd_scene load_steps=36 format=3 uid="uid://kxmleus8gd5a"]
 
 [ext_resource type="Script" path="res://scripts/levels/Main.cs" id="1_72t82"]
 [ext_resource type="PackedScene" uid="uid://c2o2giknlag0u" path="res://scenes/characters/player/player.tscn" id="2_1lmh1"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ebrr503amucm" path="res://scenes/General/ui.tscn" id="5_mjv25"]
 [ext_resource type="Script" path="res://scripts/characters/Enemy/EnemiesContainer.cs" id="5_trjr0"]
 [ext_resource type="Script" path="res://Resources/StatResource.cs" id="8_xa5mp"]
+[ext_resource type="PackedScene" uid="uid://5dcomrgju3bx" path="res://scenes/Reward/tresure_chest.tscn" id="9_kpyrp"]
+[ext_resource type="Script" path="res://Resources/Reward/RewardResource.cs" id="10_0063c"]
+[ext_resource type="Texture2D" uid="uid://dq0666b55ks33" path="res://Assets/Sprites/UI/UI ElementUI 13.png" id="11_qi7ta"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a7kkf"]
 size = Vector3(3, 5, 1)
@@ -140,6 +143,13 @@ point_count = 5
 script = ExtResource("8_xa5mp")
 StatType = 0
 StatValue = 10.0
+
+[sub_resource type="Resource" id="Resource_t350u"]
+script = ExtResource("10_0063c")
+spriteTexture = ExtResource("11_qi7ta")
+Description = "+4 Damage"
+TargetStat = 1
+Amount = 4.0
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_72t82")
@@ -282,3 +292,7 @@ curve = SubResource("Curve3D_dl3ug")
 [node name="Enemy" parent="Enemies/Path3D10" node_paths=PackedStringArray("PathNode") instance=ExtResource("4_nemu8")]
 stats = Array[Object]([SubResource("Resource_6pe5d"), SubResource("Resource_78uvd")])
 PathNode = NodePath("..")
+
+[node name="TresureChest" parent="." instance=ExtResource("9_kpyrp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 6)
+reward = SubResource("Resource_t350u")

@@ -15,6 +15,7 @@ public abstract partial class Character : CharacterBody3D
 	[Export] public Area3D HurtBoxNode {get; private set;}
 	[Export] public Area3D HitBoxNode {get; private set;}
 	[Export] public CollisionShape3D HitBoxShapeNode {get; private set;}
+	[Export] public Timer ShaderTimerNode {get; private set;}
 
 	[ExportGroup("AI Nodes")]
 	[Export] public Path3D PathNode { get; private set;}
@@ -23,18 +24,42 @@ public abstract partial class Character : CharacterBody3D
 	[Export] public Area3D AttackAreaNode {get; private set;}
 
     public Vector2 direction = new();
+	private ShaderMaterial shader;
+
 
     public override void _Ready() {
+		shader = (ShaderMaterial)SpriteNode.MaterialOverlay;
+
+		SpriteNode.TextureChanged += HandleTextureChanged;
         HurtBoxNode.AreaEntered += HandleHurtboxEntered;
+		ShaderTimerNode.Timeout += HandleShaderTimeout;
+    }
+
+    private void HandleShaderTimeout() {
+        shader.SetShaderParameter("active", false);
+    }
+
+    private void HandleTextureChanged() {
+        shader.SetShaderParameter(
+			"tex", SpriteNode.Texture
+		);
     }
 
     private void HandleHurtboxEntered(Area3D area) {
+		if(area is not IHitBox hitBox) {
+			return;
+		}
+		ShaderTimerNode.Start();
+		shader.SetShaderParameter(
+			"active", true
+		);
         StatResource health = GetStatResourse(Stat.Health);
 		
-		Character player = area.GetOwner<Character>();
+		float damage = hitBox.GetDamage();
 		
-		health.StatValue -= player.GetStatResourse(Stat.Strength).StatValue;
+		health.StatValue -= damage;
 
+		
 		GD.Print(health.StatValue);
     }
 

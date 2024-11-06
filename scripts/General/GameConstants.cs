@@ -8,6 +8,8 @@ public class GameConstants {
     public const string ANIM_DASH = "Dash";
     public const string ANIM_ATTACK = "Attack";
     public const string ANIM_DEATH = "Death";
+    public const string ANIM_EXPAND = "Expand";
+    public const string ANIM_EXPLOSION = "Explosion";
     
     //move input actions
     public const string INPUT_MOVE_LEFT = "move_left";
@@ -17,6 +19,7 @@ public class GameConstants {
     public const string INPUT_DASH = "dash";
     public const string INPUT_ATTACK = "attack";
     public const string INPUT_PAUSE = "pause";
+    public const string INPUT_INTERACT = "interact";
     
     // Notification numbers
     public const int NOTIFICATION_ENTER_STATE = 5001;

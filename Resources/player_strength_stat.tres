@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_l08jr")
 StatType = 1
-StatValue = 8.0
+StatValue = 4.0

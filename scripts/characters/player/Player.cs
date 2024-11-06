@@ -6,8 +6,13 @@ public partial class Player : Character
 
     public override void _Ready() {
         base._Ready();
+
+        GameEvents.OnReward += HandleReward;
     }
-    
+
+   
+
+
     public override void _Input(InputEvent @event) {
         direction = Input.GetVector(
 			GameConstants.INPUT_MOVE_LEFT, 
@@ -22,4 +27,9 @@ public partial class Player : Character
         
     }
 	
+
+    private void HandleReward(RewardResource resource) {
+        StatResource targetStat = GetStatResourse(resource.TargetStat);
+        targetStat.StatValue += resource.Amount;
+    }
 }
