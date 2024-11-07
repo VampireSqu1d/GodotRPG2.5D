@@ -49,10 +49,10 @@ public abstract partial class Character : CharacterBody3D
 		if(area is not IHitBox hitBox) {
 			return;
 		}
+		
 		ShaderTimerNode.Start();
-		shader.SetShaderParameter(
-			"active", true
-		);
+		shader.SetShaderParameter("active", true);
+
         StatResource health = GetStatResourse(Stat.Health);
 		
 		float damage = hitBox.GetDamage();
